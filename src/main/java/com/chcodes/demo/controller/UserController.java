@@ -1,4 +1,4 @@
-package com.chcodes.demo.api;
+package com.chcodes.demo.controller;
 
 import java.io.IOException;
 import java.net.URI;
@@ -40,7 +40,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class UserResource {
+public class UserController {
 	@Autowired
 	private UserService userService;
 
