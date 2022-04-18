@@ -3,7 +3,11 @@ package com.chcodes.demo.api;
 import java.net.URI;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +53,10 @@ public class UserResource {
 		return ResponseEntity.ok().build();
 	}
 
+	@GetMapping("/role/addtouser")
+	public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
+		 String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+	}
 	@Data
 	class RoleToUserForm {
 		private String username;
