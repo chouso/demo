@@ -22,12 +22,10 @@ import com.chcodes.demo.repo.RoleRepo;
 import com.chcodes.demo.repo.UserRepo;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
 	@Autowired
 	private UserRepo userRepo;

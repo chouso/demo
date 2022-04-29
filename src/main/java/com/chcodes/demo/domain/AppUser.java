@@ -75,7 +75,7 @@ public class AppUser {
 	}
 
 	
-	public AppUser() {
+	/*public AppUser() {
 		super();
 	}
 
@@ -88,5 +88,5 @@ public class AppUser {
 		this.roles = roles;
 	}
 
-	
+	*/
 }
