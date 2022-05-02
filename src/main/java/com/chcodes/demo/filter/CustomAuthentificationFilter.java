@@ -3,6 +3,7 @@ package com.chcodes.demo.filter;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -69,9 +70,13 @@ public class CustomAuthentificationFilter extends UsernamePasswordAuthentication
 		/*response.setHeader("access_token", access_token);
 		response.setHeader("refresh_token", refresh_token);*/
 		//here to get tokens in body in response
-		Map<String,String> tokens = new HashMap<>();
+		Map<String,Object> tokens = new HashMap<>();
 		tokens.put("access_token", access_token);
 		tokens.put("refresh_token", refresh_token);
+		tokens.put("username", user.getUsername());
+		
+		List<String> roles = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+		tokens.put("roles", roles);
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 	}

@@ -37,8 +37,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		// check if it's login , user is just trying to log in=> not doing anyThing
-		if (request.getServletPath().equals("/api/login") || request.getServletPath().equals("api/token/refresh")
-				|| request.getServletPath().equals("/user")) {
+		if (request.getServletPath().equals("/api/login") || request.getServletPath().equals("api/token/refresh")) {
 			//let the request continue
 			filterChain.doFilter(request, response);
 		} else {
