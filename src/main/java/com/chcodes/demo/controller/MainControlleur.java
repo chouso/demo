@@ -16,11 +16,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.chcodes.demo.domain.AppUser;
 import com.chcodes.demo.domain.Category;
+import com.chcodes.demo.domain.Command;
 import com.chcodes.demo.domain.Product;
 import com.chcodes.demo.domain.Role;
 import com.chcodes.demo.domain.UserInformations;
 import com.chcodes.demo.repo.RoleRepo;
-import com.chcodes.demo.repo.UserInformationsRepo;
 import com.chcodes.demo.service.CategoryService;
 import com.chcodes.demo.service.CommandService;
 import com.chcodes.demo.service.ProductService;
@@ -67,6 +67,11 @@ public class MainControlleur {
 		return "affiche";
 	}
 
+	@GetMapping("commandsList")
+	public String getCommands(Model m) {
+		m.addAttribute("listeCommands", commandService.getCommands());
+		return "commandsList";
+	}
 	@GetMapping(value = { "/userList" })
 	public String getUsers(Model model) {
 		model.addAttribute("users", userService.getUsers());
@@ -113,11 +118,6 @@ public class MainControlleur {
 		return "redirect:/productsList";
 	}
 
-	/*
-	 * @PostMapping("/find") public String findbynom(@RequestParam String motcle,
-	 * Model m) { m.addAttribute("listeP", productService.getProductByName(motcle));
-	 * return "affiche";}
-	 */
 
 	@GetMapping("/produit/update/{id}")
 	public String update(Model m, @PathVariable int id) {
@@ -162,14 +162,6 @@ public class MainControlleur {
 		return "redirect:/usersList";
 	}
 	
-	/*@GetMapping("/users/new")
-	public String showCreateNewUserForm(Model model) {
-		List<Role> listRoles =  roleRepo.findAll();
-		model.addAttribute("listRoles", listRoles);
-		model.addAttribute("user", new AppUser());
-		return "usersList";
-	}
-	*/
 	@PostMapping("/user/save")
 	public String saveUser(AppUser user) {
 		userInformationsService.saveUserInfos(user.getUserInformations());
@@ -179,9 +171,32 @@ public class MainControlleur {
 	   @PostMapping(path = "/{id}")
 	    public RedirectView updateUser(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute AppUser user) {
 	        userService.updateUser(id, user);
-	      //  String message = (user.isActive() ? "Updated " : "Deleted ") + " user <b>" + user.getName() + " " + user.getUserName() + "</b> ✨.";
 	        RedirectView redirectView = new RedirectView("/", true);
-	       // redirectAttributes.addFlashAttribute("userMessage", message);
 	        return redirectView;
 	    }
+	   
+	   @GetMapping("/command/update/{id}")
+		public String updateCommand(Model m, @PathVariable Long id) {
+			m.addAttribute("users", userService.getUsers());
+			m.addAttribute("command", commandService.getCommandById(id));
+			return "modifCommand";
+		}
+
+		@PostMapping("/command/update")
+		public String modifCommand(Command c) {
+			commandService.saveCommand(c);
+			return "redirect:/commandsList";
+		}
+		
+		@GetMapping("/command/add")
+		public String addCommand(Model m) {
+			m.addAttribute("users", userService.getUsers());
+			return "ajoutCommand";
+		}
+		@PostMapping("/addCommand")
+		public String ajoutCommand(Command command) {
+			commandService.saveCommand(command);
+			return "redirect:/commandsList";
+		}
+
 }

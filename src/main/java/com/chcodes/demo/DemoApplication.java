@@ -48,14 +48,17 @@ public class DemoApplication {
 	CommandLineRunner run(UserService userService, UserRepo userRepo, CategoryService categService,
 			ProductService productService, CategoryRepo categRepo) {
 		return args -> {
+
 			/*categService.saveCategory(new Category("categ1"));
 			categService.saveCategory(new Category("categ2"));
 			categService.saveCategory(new Category("categ3"));
+
 			
+
 			productService.saveProduct(new Product( "produi1", 5, 1500, categRepo.findByNom("categ1")));
 			productService.saveProduct(new Product("produi2", 15, 1300, categRepo.findByNom("categ1")));
 			productService.saveProduct(new Product( "produi3", 2, 200, categRepo.findByNom("categ1")));
-			
+	
 
 			
 			  userService.saveCommand(new Command(LocalDate.now(),

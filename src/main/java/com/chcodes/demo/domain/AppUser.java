@@ -39,8 +39,8 @@ public class AppUser {
 
 	private String password;
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<Command> commands = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Command> commands;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();

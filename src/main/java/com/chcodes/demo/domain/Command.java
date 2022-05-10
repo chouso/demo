@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +21,10 @@ public class Command {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Long id;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate commandDate;
-	@ManyToOne( cascade = CascadeType.ALL )
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false)
 	private AppUser user;
 
@@ -31,13 +34,7 @@ public class Command {
 		this.user = user;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	public LocalDate getCommandDate() {
 		return commandDate;
@@ -58,6 +55,18 @@ public class Command {
 	@Override
 	public String toString() {
 		return "Command [commandDate=" + commandDate + ", user=" + user + "]";
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

@@ -25,11 +25,11 @@ public class CommandService {
 		return commandRepo.findAll();
 	}
 
-	public Command getCommandById(int id) {
+	public Command getCommandById(Long id) {
 		return commandRepo.findById(id).orElse(null);
 	}
 
-	public String deleteCommand(int id) {
+	public String deleteCommand(Long id) {
 		commandRepo.deleteById(id);
 		return "command removed !! " + id;
 	}
