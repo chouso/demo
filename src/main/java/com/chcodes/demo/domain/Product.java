@@ -27,6 +27,23 @@ public class Product {
 	@ManyToOne
 	Category category;
 
+
+
+	public Product() {
+		super();
+	}
+
+	
+	public Product(int id, String name, int quantity, double price, Category category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+		this.category = category;
+	}
+
+
 	public int getId() {
 		return id;
 	}

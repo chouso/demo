@@ -1,5 +1,7 @@
 package com.chcodes.demo;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.chcodes.demo.domain.Category;
+import com.chcodes.demo.domain.Command;
 import com.chcodes.demo.domain.Product;
 import com.chcodes.demo.repo.CategoryRepo;
 import com.chcodes.demo.repo.UserRepo;
@@ -45,27 +48,27 @@ public class DemoApplication {
 	CommandLineRunner run(UserService userService, UserRepo userRepo, CategoryService categService,
 			ProductService productService, CategoryRepo categRepo) {
 		return args -> {
-			/*categService.ajoutCategory(new Category("categ1"));
-			categService.ajoutCategory(new Category("categ2"));
-			categService.ajoutCategory(new Category("categ3"));
+			/*categService.saveCategory(new Category("categ1"));
+			categService.saveCategory(new Category("categ2"));
+			categService.saveCategory(new Category("categ3"));
 			
-			productService.saveProduct(new Product(1, "produi1", 5, 1500, categRepo.findByNom("categ1")));
-			productService.saveProduct(new Product(2, "produi2", 15, 1300, categRepo.findByNom("categ1")));
-			productService.saveProduct(new Product(3, "produi3", 2, 200, categRepo.findByNom("categ1")));*/
+			productService.saveProduct(new Product( "produi1", 5, 1500, categRepo.findByNom("categ1")));
+			productService.saveProduct(new Product("produi2", 15, 1300, categRepo.findByNom("categ1")));
+			productService.saveProduct(new Product( "produi3", 2, 200, categRepo.findByNom("categ1")));
 			
 
-			/*
-			 * userService.saveCommand(new Command(LocalDate.now(),
-			 * userRepo.findByUserName("arnold"))); userService.saveCommand(new
-			 * Command(LocalDate.now().plusDays(1), userRepo.findByUserName("arnold")));
-			 * userService.saveCommand(new Command(LocalDate.now().plusDays(2),
-			 * userRepo.findByUserName("arnold")));
-			 * 
-			 * userService.saveCommand(new Command(LocalDate.now(),
-			 * userRepo.findByUserName("john"))); userService.saveCommand(new
-			 * Command(LocalDate.now().plusDays(1), userRepo.findByUserName("john")));
-			 * userService.saveCommand(new Command(LocalDate.now().plusDays(2),
-			 * userRepo.findByUserName("john")));
+			
+			  userService.saveCommand(new Command(LocalDate.now(),
+			  userRepo.findByUserName("arnold"))); userService.saveCommand(new
+			  Command(LocalDate.now().plusDays(1), userRepo.findByUserName("arnold")));
+			  userService.saveCommand(new Command(LocalDate.now().plusDays(2),
+			  userRepo.findByUserName("arnold")));
+			  
+			  userService.saveCommand(new Command(LocalDate.now(),
+			  userRepo.findByUserName("john"))); userService.saveCommand(new
+			  Command(LocalDate.now().plusDays(1), userRepo.findByUserName("john")));
+			  userService.saveCommand(new Command(LocalDate.now().plusDays(2),
+			  userRepo.findByUserName("john")));
 			 */
 			/*
 			 * userService.saveRole(new Role(null, "ROLE_USER")); userService.saveRole(new

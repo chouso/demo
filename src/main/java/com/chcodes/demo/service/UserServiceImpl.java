@@ -17,8 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chcodes.demo.domain.AppUser;
-import com.chcodes.demo.domain.ERole;
+import com.chcodes.demo.domain.Command;
 import com.chcodes.demo.domain.Role;
+import com.chcodes.demo.repo.CommandRepo;
 import com.chcodes.demo.repo.RoleRepo;
 import com.chcodes.demo.repo.UserRepo;
 
@@ -32,6 +33,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private UserRepo userRepo;
 	@Autowired
 	private RoleRepo roleRepo;
+	@Autowired
+	private CommandRepo commandRepo;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -101,6 +104,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	        fromDb.setUserName(appUser.getUserName());
 	        fromDb.setRoles((List<Role>) appUser.getRoles());
 	        return userRepo.save(fromDb);
+	}
+
+	@Override
+	public void saveCommand(Command command) {
+		commandRepo.save(command);
+		
 	}
 	
 }

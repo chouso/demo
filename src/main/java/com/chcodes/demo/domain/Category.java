@@ -35,5 +35,34 @@ public class Category {
 		super();
 		this.nom = nom;
 	}
+	public Category(int id, String nom, List<Product> products) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.products = products;
+	}
+	public Category() {
+		super();
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	
+	
 
 }

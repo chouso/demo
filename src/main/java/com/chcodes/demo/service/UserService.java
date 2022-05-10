@@ -3,6 +3,7 @@ package com.chcodes.demo.service;
 import java.util.List;
 
 import com.chcodes.demo.domain.AppUser;
+import com.chcodes.demo.domain.Command;
 import com.chcodes.demo.domain.Role;
 
 public interface UserService {
@@ -21,4 +22,6 @@ public interface UserService {
 	public AppUser get(Long id);
 	
 	public AppUser  updateUser(Long id, AppUser appUser) ;
+
+	void saveCommand(Command command);
 }

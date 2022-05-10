@@ -44,7 +44,7 @@ public class AppUser {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
-
+//onetoone avec  3 eme entite
 	@OneToOne
 	@JoinTable(name = "Users_Info_Associations", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idUserInformations"))
 	private UserInformations userInformations;
@@ -120,9 +120,8 @@ public class AppUser {
 		this.userInformations = userInformations;
 	}
 
-	/*
-	 * public AppUser() { super(); }
-	 */
-	
+	public AppUser() {
+		super();
+	}
 
 }

@@ -19,7 +19,7 @@ public class UserInformations {
 	private String city;
 
 	private String email;
-
+//onetoone avec 3 eme entite
 	@OneToOne( cascade = CascadeType.ALL )
 	@JoinTable(name = "Users_Info_Associations", joinColumns = @JoinColumn(name = "idUserInformations"), inverseJoinColumns = @JoinColumn(name = "idUser"))
 	private AppUser user;
