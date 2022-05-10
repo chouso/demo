@@ -32,6 +32,13 @@ public class Role {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Role [name=" + name + "]";
+	}
+	
+	
+
 	/*public Role(Long id, String name) {
 		super();
 		this.id = id;

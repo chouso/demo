@@ -1,11 +1,13 @@
-package com.chcodes.demo.controller;
+package com.chcodes.demo.controller.rest;
 
 import java.io.IOException;
 import java.net.URI;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +32,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.chcodes.demo.domain.AppUser;
+import com.chcodes.demo.domain.ERole;
 import com.chcodes.demo.domain.Role;
+import com.chcodes.demo.repo.UserRepo;
+import com.chcodes.demo.response.MessageResponse;
 import com.chcodes.demo.service.UserService;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -46,6 +51,9 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepo userRepo;
 
 	@GetMapping("/users")
 	public ResponseEntity<List<AppUser>> getUsers() {
@@ -53,8 +61,21 @@ public class UserController {
 	}
 
 	@PostMapping("/user/save")
-	public ResponseEntity<AppUser> saveUser(@RequestBody AppUser user) {
+	public ResponseEntity<?> saveUser(@RequestBody AppUser user) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
+		 /*if (userRepo.findByUserName(user.getUserName()) != null) {
+		      return ResponseEntity
+		          .badRequest()
+		          .body(new MessageResponse("Error: Username is already taken!"));
+		    }*/
+		  // Create new user's account
+		//add role user by default
+		/* Set<Role> roles = new HashSet<>();
+		 Set<String> strRoles =  new HashSet<>();
+		 strRoles.add("ROLE_USER");*/
+		 
+		 userService.saveUser(user);
+		 userService.addRoleToUser(user.getUserName(), "ROLE_USER");
 		return ResponseEntity.created(uri).body(userService.saveUser(user));
 	}
 
@@ -129,7 +150,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public String userAccess() {
 		return "User Content.";
 	}

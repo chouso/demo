@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Categ List</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1>Categ List</h1>
+	<a href="addCateg">Add Categ</a>
+	<br />
+	<br />
+	<div>
+		<table border="1">
+			<tr>
+				<th>Nom</th>
+				<th>ACTION</th>
+			</tr>
+			<tr th:each="c : ${categs}">
+				<td th:utext="${c.nom}">...</td>
+				<td>
+					<form th:method="delete"
+						th:action="@{/categ/delete/{id} (id=${c.id})}">
+						<input type="submit" value="Supprimer"
+							class="btn btn-outline-danger"
+							onclick="return confirm('Voulez vous vraiment supprimer cette catégorie?')">
+					</form> &nbsp; <a th:href="@{/categ/update/{id} (id=${c.id})}"
+					class="btn btn-outline-warning">Modifier</a>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

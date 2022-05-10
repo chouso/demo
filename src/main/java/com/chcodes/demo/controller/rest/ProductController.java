@@ -1,4 +1,4 @@
-package com.chcodes.demo.controller;
+package com.chcodes.demo.controller.rest;
 
 import java.net.URI;
 import java.util.List;

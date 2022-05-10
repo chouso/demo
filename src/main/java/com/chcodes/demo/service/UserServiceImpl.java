@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chcodes.demo.domain.AppUser;
+import com.chcodes.demo.domain.ERole;
 import com.chcodes.demo.domain.Role;
 import com.chcodes.demo.repo.RoleRepo;
 import com.chcodes.demo.repo.UserRepo;
@@ -54,8 +55,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public AppUser saveUser(AppUser appUser) {
-		LOGGER.info("saving new user to the database");
-		// to encode the password and save it encoded in db 
+		/*Role roleUser = roleRepo.findByName(ERole.ROLE_USER.toString());
+		appUser.addRole(roleUser);*/
+		// to encode the password and save it encoded in db
 		appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
 		return userRepo.save(appUser);
 	}
@@ -85,5 +87,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		LOGGER.info("fetching all users");
 		return userRepo.findAll();
 	}
+	
 
+	@Override
+	public AppUser get(Long id) {
+		return userRepo.getById(id);
+	}
+
+	@Override
+	public AppUser updateUser(Long id, AppUser appUser) {
+		AppUser fromDb = get(id);
+	        fromDb.setName(appUser.getName());
+	        fromDb.setUserName(appUser.getUserName());
+	        fromDb.setRoles((List<Role>) appUser.getRoles());
+	        return userRepo.save(fromDb);
+	}
+	
 }
