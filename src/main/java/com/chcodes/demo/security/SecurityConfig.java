@@ -37,7 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(UserDetailsService).passwordEncoder(bCryptPasswordEncoder);
 		super.configure(auth);
 	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CustomAuthentificationFilter customAuthentificationFilter = new CustomAuthentificationFilter(

@@ -22,7 +22,7 @@ import com.chcodes.demo.service.UserService;
 
 @SpringBootApplication
 public class DemoApplication {
-
+// lien swagger :: http://localhost:9191/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/command-controller/deleteCommand
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}

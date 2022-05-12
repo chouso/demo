@@ -36,6 +36,13 @@ public class Command {
 
 	
 
+	public Command() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public LocalDate getCommandDate() {
 		return commandDate;
 	}

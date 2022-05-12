@@ -73,6 +73,7 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.5.12</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.thymeleaf</groupId>

@@ -1,30 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-   <head>
-      <meta charset="UTF-8" />
-      <title>Welcome</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-   </head>
-   <body>
-      <h1>Welcome</h1>
-      <h2 th:utext="${message}">..!..</h2>
-      
-      <!--  
-      
-         In Thymeleaf the equivalent of
-         JSP's ${pageContext.request.contextPath}/edit.html
-         would be @{/edit.html}
-         
-         -->
-         
-      <a th:href="@{/userList}">User List</a>  
-      <br/>
-      <a th:href="@{/productsList}">products List</a> 
-      <br/>
-      <a th:href="@{/categList}">Categ List</a> 
-       <br/>
-      <a th:href="@{/commandsList}">Command List</a> 
-      
-   </body>
-   
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Gestion des utilisateurs/commandes/produits</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<h1>Welcome</h1>
+
+
+<div>
+	<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{/}"> </a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a class="nav-link" th:href="@{/userList}">Gestion des utilisateurs</a></li>
+
+				<li><a class="nav-link" th:href="@{/commandsList}">Gestion des commandes</a></li>
+
+				<li><a class="nav-link" th:href="@{/categList}">Gestion des catégories</a></li>
+
+				<li><a class="nav-link" th:href="@{/productsList}">Gestion des produits</a></li>
+			</ul>
+		</div>
+	</nav>  </div>
+</body>
+
 </html>
